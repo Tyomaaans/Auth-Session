@@ -2,8 +2,6 @@
 
 A production-ready REST API for authentication and multi-session management built with Go. Designed for high security and scalability — featuring refresh token rotation, token hashing at rest, multi-device tracking, and instant session revocation via Redis.
 
-> ⚠️ This project is actively under development. Core authentication, token rotation, and multi-session controls are stable.
-
 ---
 
 ## Architecture Overview
