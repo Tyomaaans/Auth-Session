@@ -12,7 +12,7 @@ type UpdateUserRequest struct {
 	ID         string  `json:"-"`
 	Name       *string `json:"name"        validate:"omitempty,alphaspaceunicode"`
 	Email      *string `json:"email"       validate:"omitempty,email"`
-	RememberMe *bool   `json:"remember_me" validate:"omitempty"`
+	RememberMe *bool   `json:"-"`
 }
 
 type LoginRequest struct {
