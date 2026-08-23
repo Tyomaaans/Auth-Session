@@ -18,6 +18,7 @@ type AppConfig struct {
 	REDISaddr            string
 	REDISpassword        string
     APPurl               string
+	AdminSecretKey       string
 }
 
 func NewConfig() AppConfig {
@@ -74,6 +75,11 @@ func NewConfig() AppConfig {
 		log.Fatal("APP_URL environment variable is required!")
 	}
 
+	adminSecret := os.Getenv("ADMIN_SECRET_KEY")
+	if appURL == "" {
+		log.Fatal("ADMIN_SECRET_KEY environment variable is required!")
+	}
+
 	return AppConfig{
 		APPport:              appPort,
 		DSN:                  dsn,
@@ -84,5 +90,6 @@ func NewConfig() AppConfig {
 		REDISaddr:            redisAddr,
 		REDISpassword:        redisPassword,
 		APPurl:               appURL,
+		AdminSecretKey:       adminSecret,
 	}
 }

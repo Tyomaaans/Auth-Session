@@ -13,11 +13,13 @@ import (
 
 type AuthMiddleware struct {
 	jwtService tokens.JWTService
+	adminSecret string
 }
 
-func NewAuthMiddleware(jwtService tokens.JWTService) *AuthMiddleware {
+func NewAuthMiddleware(jwtService tokens.JWTService, adminSecret string) *AuthMiddleware {
 	return &AuthMiddleware{
 		jwtService: jwtService,
+		adminSecret: adminSecret,
 	}
 }
 
@@ -53,7 +55,7 @@ func (m *AuthMiddleware) AdminSecretMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		adminToken := c.GetHeader("X-Admin-Secret")
 
-		if adminToken != "QFJvbGVBZG1pblJlcXVpcmVkRm9yQWNjZXNzUHJlZml4QWRtaW4tMjMvMDgvMjAyNg" {
+		if adminToken != m.adminSecret {
 			abortWithError(c, http.StatusForbidden, "access denied", "AUTHZ_ROLE_FORBIDDEN")
 			return
 		}

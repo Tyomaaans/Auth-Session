@@ -38,7 +38,7 @@ func main() {
 	userService := users.NewUserService(userRepo, tokenSvc, sessionSvc, validate)
 	userHandler := users.NewUserHandler(userService, cfg.DefaultRefreshExpiry, cfg.ShortRefreshExpiry)
 
-	authMiddleware := middleware.NewAuthMiddleware(tokenSvc)
+	authMiddleware := middleware.NewAuthMiddleware(tokenSvc, cfg.AdminSecretKey)
 
 	r := routes.NewUserRouter(userHandler, authMiddleware)
 
