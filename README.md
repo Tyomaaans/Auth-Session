@@ -59,6 +59,9 @@ Gin HTTP Server
 
 ## API Endpoints
 
+<details>
+<summary><strong>Auth</strong> — 4 endpoints</summary>
+
 | Method | Endpoint | Access |
 | --- | --- | --- |
 | POST | `/api/v1/auth/register` | Public |
@@ -66,10 +69,20 @@ Gin HTTP Server
 | POST | `/api/v1/auth/refresh` | Public |
 | POST | `/api/v1/auth/logout` | Authenticated |
 
+</details>
+
+<details>
+<summary><strong>Users</strong> — 2 endpoints</summary>
+
 | Method | Endpoint | Access |
 | --- | --- | --- |
 | GET | `/api/v1/users/me` | Authenticated |
 | PATCH | `/api/v1/users/me` | Authenticated |
+
+</details>
+
+<details>
+<summary><strong>Sessions</strong> — 4 endpoints</summary>
 
 | Method | Endpoint | Access |
 | --- | --- | --- |
@@ -77,6 +90,11 @@ Gin HTTP Server
 | DELETE | `/api/v1/users/me/sessions/:sid` | Authenticated |
 | DELETE | `/api/v1/users/me/sessions/others` | Authenticated |
 | DELETE | `/api/v1/users/me/sessions` | Authenticated |
+
+</details>
+
+<details>
+<summary><strong>Admin</strong> — 6 endpoints</summary>
 
 | Method | Endpoint | Access |
 | --- | --- | --- |
@@ -86,6 +104,8 @@ Gin HTTP Server
 | GET | `/api/v1/admin/users/:sub/sessions` | Authenticated + Admin Secret |
 | DELETE | `/api/v1/admin/users/:sub/sessions/:sid` | Authenticated + Admin Secret |
 | DELETE | `/api/v1/admin/users/:sub/sessions` | Authenticated + Admin Secret |
+
+</details>
 
 ---
 
@@ -100,7 +120,7 @@ Gin HTTP Server
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/auth-session-api.git
+git clone https://github.com/tyomaaans/auth-session-api.git
 cd auth-session-api
 
 # Copy environment variables
@@ -116,27 +136,28 @@ docker compose up -d
 See `.env.example` for all required variables. Key configs:
 
 ```env
-# ── App ────────────────────────────────────────────────────
+# App
 APP_ENV=
 APP_PORT=
 APP_URL=
 
-# ── Database ────────────────────────────────────────────────
+# Database
 POSTGRES_USER=
 POSTGRES_PASSWORD=
+POSTGRES_DB=
 DATABASE_URL=
 
-# ── Redis ───────────────────────────────────────────────────
+# Redis
 REDIS_ADDR=
 REDIS_PASSWORD=
 
-# ── JWT & Session ───────────────────────────────────────────
+# Token
 JWT_SECRET_KEY=
 JWT_EXPIRY=
 DEFAULT_REFRESH_EXPIRY=
 SHORT_REFRESH_EXPIRY=
 
-# ── Admin ───────────────────────────────────────────────────
+# Admin
 ADMIN_SECRET_KEY=
 
 ```
