@@ -120,7 +120,7 @@ Gin HTTP Server
 
 ```bash
 # Clone the repository
-git clone https://github.com/tyomaaans/auth-session-api.git
+git clone https://github.com/Tyomaaans/Auth-Session.git
 cd auth-session-api
 
 # Copy environment variables
