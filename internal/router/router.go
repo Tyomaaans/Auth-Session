@@ -31,18 +31,18 @@ func NewUserRouter(
 			auth.POST("/logout",   authMiddleware.Authenticate(), userHandler.LogoutUser)
 		}
 
-		user := v1.Group("/users/me", authMiddleware.Authenticate())
+		users := v1.Group("/users/me", authMiddleware.Authenticate())
 		{
-			user.GET("",   userHandler.GetMyProfile)
-			user.PATCH("", userHandler.UpdateMyProfile)
+			users.GET("",   userHandler.GetMyProfile)
+			users.PATCH("", userHandler.UpdateMyProfile)
 		}
 
-		session := v1.Group("users/me/sessions", authMiddleware.Authenticate())
+		sessions := v1.Group("users/me/sessions", authMiddleware.Authenticate())
 		{
-			session.GET("",           userHandler.GetActiveSessionsMyProfile)
-			session.DELETE("/:sid",   userHandler.RevokeSessionMyProfile)
-			session.DELETE("/others", userHandler.RevokeAllOtherSessionsMyProfile)
-			session.DELETE("",        userHandler.RevokeAllSessionsMyProfile)
+			sessions.GET("",           userHandler.GetActiveSessionsMyProfile)
+			sessions.DELETE("/:sid",   userHandler.RevokeSessionMyProfile)
+			sessions.DELETE("/others", userHandler.RevokeAllOtherSessionsMyProfile)
+			sessions.DELETE("",        userHandler.RevokeAllSessionsMyProfile)
 		}
 
 		admin := v1.Group("/admin", authMiddleware.Authenticate(), authMiddleware.AdminSecretMiddleware())
