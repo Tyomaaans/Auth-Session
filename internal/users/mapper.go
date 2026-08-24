@@ -46,6 +46,15 @@ func ToRegisterUserEntity(id string, req RegisterUserRequest) *domains.CreateUse
 	}
 }
 
+func ToRegisterUserStorage(e *domains.CreateUserEntity) *postgres.UserStorage {
+	return &postgres.UserStorage{
+		ID:       e.ID,
+		Name:     e.Name,
+		Email:    e.Email,
+		Password: e.Password,
+	}
+}
+
 func ToUpdateUserEntity(req *UpdateUserRequest) *domains.UpdateUserEntity {
 	if req == nil {
 		return nil
