@@ -70,7 +70,7 @@ func (s *userService) RegisterUser(ctx context.Context, req RegisterUserRequest)
 
 	payload := ToRegisterUserEntity(id, req)
 
-	if err := s.userRepo.CreateUser(ctx, *payload); err != nil {
+	if err := s.userRepo.CreateUser(ctx, payload); err != nil {
 		return err
 	}
 
