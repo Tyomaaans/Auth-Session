@@ -30,7 +30,7 @@ type UpdateUserEntity struct {
 // User Repository
 
 type UserRepository interface {
-	CreateUser(ctx context.Context, user CreateUserEntity) error
+	CreateUser(ctx context.Context, user *CreateUserEntity) error
 	UpdateUser(ctx context.Context, update *UpdateUserEntity) error
 	GetUsers(ctx context.Context) ([]UserEntity, error)
 	GetUserByID(ctx context.Context, id string) (*UserEntity, error)
