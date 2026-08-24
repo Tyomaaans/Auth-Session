@@ -20,13 +20,8 @@ func NewUserRepository(db *gorm.DB) domains.UserRepository {
 
 // ==== User Repository ====
 
-func (r *userRepository) CreateUser(ctx context.Context, user domains.CreateUserEntity) error {
-	storage := &postgres.UserStorage{
-		ID:       user.ID,
-		Name:     user.Name,
-		Email:    user.Email,
-		Password: user.Password,
-	}
+func (r *userRepository) CreateUser(ctx context.Context, user *domains.CreateUserEntity) error {
+	storage := ToRegisterUserStorage(user)
 
 	if err := r.db.WithContext(ctx).Create(storage).Error; err != nil {
 		return pkg.HandleDBError(err)
